@@ -71,9 +71,9 @@ public class Colosseum {
      *         <p>
      *         Implement this function.
      */
-    public static Pokemon buildPokemon() {
-        Pokemon tempPokemon = new Pokemon();
-        return tempPokemon;
+    public static Pokemon buildPokemon(String name, int hits, int defense, int attack) {
+        Pokemon myPokemon = new Pokemon(name, hits, defense, attack);
+        return myPokemon;
     }
 
     /**
@@ -90,7 +90,14 @@ public class Colosseum {
      * Implement this function.
      */
     public static void printWhoIsAhead() {
-        System.out.println("Implement me!");
+
+        int firstHit = firstPokemon.hitPoints;
+        int secondHit = secondPokemon.hitPoints;
+        if (firstHit > secondHit) {
+            System.out.println(firstPokemon.name + " is currently ahead!");
+        } else {
+            System.out.println(secondPokemon.name + " is currently ahead!");
+        }
     }
 
     /**
@@ -101,7 +108,13 @@ public class Colosseum {
      * Write this function.
      */
     public static void determineWinner() {
-        System.out.println("Implement me!");
+        int firstHit = firstPokemon.hitPoints;
+        int secondHit = secondPokemon.hitPoints;
+        if (secondHit < 0) {
+            System.out.println(firstPokemon.name + " wins!");
+        } else {
+            System.out.println(secondPokemon.name + " wins!");
+        }
     }
 
     /**
@@ -112,15 +125,45 @@ public class Colosseum {
     public static void initializePokemon() {
         System.out.println("Player 1, build your Pokemon!");
         System.out.println("=================");
-        firstPokemon = buildPokemon();
-        firstPokemon.name = "Chuchu";
+        myScan = new Scanner(System.in);
+        System.out.println("What is the Pokemon's name: ");
+        String name = myScan.next();
+        myScan = new Scanner(System.in);
+        System.out.println("How many hit points will it have? (1-50): ");
+        int hit = myScan.nextInt();
+        int attack;
+        int defense;
+        myScan = new Scanner(System.in);
+        System.out.println("Enter your attack level (1-49): ");
+        attack = myScan.nextInt();
+        myScan = new Scanner(System.in);
+        System.out.println("Enter your defense level (1-23): ");
+        defense = myScan.nextInt();
 
-        System.out.println("");
+        firstPokemon = buildPokemon(name, hit, defense, attack);
+
+
 
         System.out.println("Player 2, build your Pokemon!");
         System.out.println("==================");
-        secondPokemon = buildPokemon();
-        secondPokemon.name = "Xyz";
+        myScan = new Scanner(System.in);
+        System.out.println("What is the Pokemon's name: ");
+        String name2 = myScan.next();
+
+
+        myScan = new Scanner(System.in);
+        System.out.println("How many hit points will it have? (1-50): ");
+        int hit2 = myScan.nextInt();
+        int attack2;
+        int defense2;
+        myScan = new Scanner(System.in);
+        System.out.println("Enter your attack level (1-49): ");
+        attack2 = myScan.nextInt();
+        myScan = new Scanner(System.in);
+        System.out.println("Enter your defense level (1-23): ");
+        defense2 = myScan.nextInt();
+
+        secondPokemon = buildPokemon(name2, hit2, attack2, defense2);
     }
 
     /**
